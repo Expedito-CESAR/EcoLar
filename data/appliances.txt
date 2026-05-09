@@ -1,0 +1,20 @@
+001;Cozinha;Geladeira 1 Porta;90;24;30;30;Médio
+002;Cozinha;Micro-ondas;1200;20;30;12;Médio
+003;Cozinha;Liquidificador;300;15;15;1.1;Baixo
+004;Cozinha;Cafeteira Elétrica;600;60;30;18;Médio
+005;Cozinha;Ferro Elétrico;1000;60;12;12;Médio
+006;Cozinha;Air Fryer/Fritadeira;1000;30;15;7.5;Médio
+007;Cozinha;Panela Elétrica;1100;120;20;44;Alto
+008;Climatização;Ventilador Pequeno;65;480;30;15.6;Médio
+009;Climatização;Ventilador de Teto;120;480;30;28.8;Médio
+010;Climatização;Ar-condicionado 7500 BTU;1000;480;30;120;Alto
+011;Banheiro;Chuveiro Elétrico;3500;40;30;70;Alto
+012;Banheiro;Secador de Cabelo;1400;10;30;7;Médio
+013;Iluminação;Lâmpada LED 15W;15;300;30;2.2;Baixo
+014;Lavanderia;Máquina de Lavar Roupas;500;60;12;6;Baixo
+015;Entretenimento;Televisão LED;90;300;30;13.5;Médio
+016;Entretenimento;Rádio Pequeno;10;600;30;3;Baixo
+017;Informática;Computador;120;180;30;10.8;Médio
+018;Informática;Notebook;65;300;30;9.7;Baixo
+019;Informática;Carregador de Celular;5;240;30;0.6;Baixo
+020;Geral;Aspirador de Pó;100;20;30;10;Médio
