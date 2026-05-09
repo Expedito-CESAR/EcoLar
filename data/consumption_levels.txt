@@ -1,0 +1,4 @@
+001;Baixo;1-2 Pessoas (Presencial);100-200;Econômico
+002;Médio;3-4 Pessoas (Híbrido);200-350;Moderado
+003;Alto;4+ Pessoas (Home Office/Casa);400-700;Elevado
+004;Muito Alto;Casa com Piscina/Ar Condicionado;600-1000+;Crítico
