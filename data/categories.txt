@@ -1,0 +1,8 @@
+001;Cozinha;Aparelhos utilizados na cozinha
+002;Climatizacao;Equipamentos de ventilacao e refrigeração
+003;Iluminacao;Lampadas e dispositivos de iluminação
+004;Banheiro;Equipamentos de uso no banheiro
+005;Lavanderia;Equipamentos de lavagem e limpeza
+006;Entretenimento;Televisores e aparelhos de lazer
+007;Informatica;Computadores e dispositivos eletrônicos
+008;Geral;Outros equipamentos domésticos
