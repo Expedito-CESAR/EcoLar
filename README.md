@@ -2,15 +2,13 @@
 
 Sistema acadêmico desenvolvido em Python com foco no monitoramento e conscientização sobre consumo energético residencial.
 
----
 
-## 📌 Objetivo do Projeto
+## Objetivo do Projeto
 
 O EcoLar tem como objetivo auxiliar usuários no acompanhamento do consumo energético de aparelhos elétricos, promovendo maior conscientização sobre hábitos de consumo e incentivando práticas mais sustentáveis através de cálculos de consumo, estimativas de custo e classificação energética.
 
----
 
-## 🚀 Funcionalidades do Sistema
+## Funcionalidades do Sistema
 
 - Cadastro de usuários
 - Cadastro de aparelhos elétricos
@@ -23,9 +21,8 @@ O EcoLar tem como objetivo auxiliar usuários no acompanhamento do consumo energ
 - Simulação simples de economia
 - Tratamento de erros e exceções
 
----
 
-## 🛠 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - Python
 - Git
@@ -33,9 +30,8 @@ O EcoLar tem como objetivo auxiliar usuários no acompanhamento do consumo energ
 - Visual Studio Code
 - Arquivos TXT para persistência de dados
 
----
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```plaintext
 EcoLar/
