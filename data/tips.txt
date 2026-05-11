@@ -1,0 +1,59 @@
+001;Geladeira 1 Porta;Evite abrir a geladeira várias vezes seguidas para reduzir o consumo de energia.
+002;Geladeira 1 Porta;Mantenha a borracha da porta em bom estado para evitar desperdício energético.
+
+003;Micro-ondas;Utilize o micro-ondas para aquecer pequenas refeições em vez do forno elétrico.
+004;Micro-ondas;Evite abrir a porta antes do término do aquecimento para não desperdiçar energia.
+
+005;Liquidificador;Use o liquidificador apenas pelo tempo necessário para reduzir o consumo.
+006;Liquidificador;Desligue o aparelho da tomada após o uso para evitar consumo desnecessário.
+
+007;Cafeteira Elétrica;Prepare apenas a quantidade necessária de café para evitar desperdício de energia.
+008;Cafeteira Elétrica;Desligue a cafeteira após o preparo para evitar consumo contínuo.
+
+009;Ferro Elétrico;Passe o maior número possível de roupas de uma só vez.
+010;Ferro Elétrico;Desligue o ferro alguns minutos antes de terminar e aproveite o calor residual.
+
+011;Air Fryer/Fritadeira;Evite abrir a fritadeira constantemente durante o preparo.
+012;Air Fryer/Fritadeira;Prepare maiores quantidades de alimentos de uma vez para otimizar o uso.
+
+013;Panela Elétrica;Mantenha a tampa fechada durante o preparo para conservar o calor.
+014;Panela Elétrica;Desligue a panela alguns minutos antes do fim do cozimento para aproveitar o calor interno.
+
+015;Ventilador Pequeno;Limpe regularmente as hélices para melhorar a eficiência do aparelho.
+016;Ventilador Pequeno;Desligue o ventilador ao sair do ambiente.
+
+017;Ventilador de Teto;Use velocidades moderadas para reduzir o consumo energético.
+018;Ventilador de Teto;Desligue o ventilador quando o ambiente estiver vazio.
+
+019;Ar-condicionado 7500 BTU;Mantenha a temperatura entre 23°C e 24°C para economizar energia.
+020;Ar-condicionado 7500 BTU;Limpe os filtros regularmente para melhorar a eficiência do aparelho.
+
+021;Chuveiro Elétrico;Reduza o tempo de banho para diminuir o consumo de energia.
+022;Chuveiro Elétrico;Utilize a posição “verão” nos dias quentes para economizar eletricidade.
+
+023;Secador de Cabelo;Utilize o secador na potência média sempre que possível.
+024;Secador de Cabelo;Desligue o aparelho da tomada após o uso.
+
+025;Lâmpada LED 15W;Aproveite ao máximo a iluminação natural durante o dia.
+026;Lâmpada LED 15W;Apague as luzes ao sair dos ambientes.
+
+027;Máquina de Lavar Roupas;Lave roupas com a capacidade máxima recomendada pela máquina.
+028;Máquina de Lavar Roupas;Utilize ciclos econômicos sempre que possível.
+
+029;Televisão LED;Desligue a televisão quando ninguém estiver assistindo.
+030;Televisão LED;Evite deixar a TV em modo standby durante longos períodos.
+
+031;Rádio Pequeno;Desligue o rádio quando não estiver em uso.
+032;Rádio Pequeno;Utilize pilhas recarregáveis quando aplicável.
+
+033;Computador;Ative o modo de economia de energia do sistema operacional.
+034;Computador;Desligue o computador ao final do uso diário.
+
+035;Notebook;Reduza o brilho da tela para aumentar a eficiência energética.
+036;Notebook;Retire o carregador da tomada após a carga completa.
+
+037;Carregador de Celular;Desconecte o carregador da tomada quando não estiver carregando o aparelho.
+038;Carregador de Celular;Evite deixar o celular carregando durante toda a noite.
+
+039;Aspirador de Pó;Utilize o aspirador apenas quando necessário.
+040;Aspirador de Pó;Limpe o filtro regularmente para melhorar o desempenho e reduzir o consumo.
