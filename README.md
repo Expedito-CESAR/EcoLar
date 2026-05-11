@@ -51,7 +51,10 @@ EcoLar/
 │
 ├── data/
 │   ├── appliances.txt
+│   ├── categories.txt
+│   ├── consumption_levels.txt
 │   ├── history.txt
+│   ├── tips.txt
 │   ├── users.txt
 │
 ├── models/
@@ -63,6 +66,7 @@ EcoLar/
 │   ├── __init__.py
 │   ├── consumption_service.py
 │   ├── crud_service.py
+|   ├── report_service.py
 │
 ├── utils/
 │   ├── __init__.py
