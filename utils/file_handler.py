@@ -55,9 +55,7 @@ def read_txt_file(path, expected_fields):
 # Função responsável pela leitura dos aparelhos
 def read_appliances():
 
-    print("Função executada")
-
-    # Lista que armazenará os aparelhos
+        # Lista que armazenará os aparelhos
     appliances = []
 
     # Realiza a leitura do arquivo
