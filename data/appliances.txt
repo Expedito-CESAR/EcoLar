@@ -1,4 +1,4 @@
-001;Cozinha;Geladeira 1 Porta;90;24;30;30;Médio
+001;Cozinha;Geladeira 1 Porta;90;1440;30;30;Médio
 002;Cozinha;Micro-ondas;1200;20;30;12;Médio
 003;Cozinha;Liquidificador;300;15;15;1.1;Baixo
 004;Cozinha;Cafeteira Elétrica;600;60;30;18;Médio

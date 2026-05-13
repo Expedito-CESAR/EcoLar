@@ -48,6 +48,7 @@ EcoLar/
 │
 ├── main.py
 ├── README.md
+├── requirements.txt
 │
 ├── data/
 │   ├── appliances.txt
@@ -55,20 +56,69 @@ EcoLar/
 │   ├── consumption_levels.txt
 │   ├── history.txt
 │   ├── tips.txt
+│   ├── user_appliances.txt
 │   ├── users.txt
 │
 ├── models/
 │   ├── __init__.py
 │   ├── appliance.py
 │   ├── user.py
+│   ├── category.py
+│   ├── tip.py
+│   ├── consumption_level.py
+│   ├── history.py
+│   ├── user_appliance.py
+│
+├── repositories/
+│   ├── __init__.py
+│   ├── user_repository.py
+│   ├── appliance_repository.py
+│   ├── category_repository.py
+│   ├── tip_repository.py
+│   ├── history_repository.py
+│   ├── consumption_repository.py
+│   ├── user_appliance_repository.py
 │
 ├── services/
 │   ├── __init__.py
+│   ├── user_service.py
+│   ├── user_appliance_service.py
+│   ├── appliance_service.py
 │   ├── consumption_service.py
-│   ├── crud_service.py
-|   ├── report_service.py
+│   ├── report_service.py
+│   ├── recommendation_service.py
+|   ├── history_service.py
+│
+├── controllers/
+│   ├── __init__.py
+│   ├── user_controller.py
+│   ├── appliance_controller.py
+│   ├── report_controller.py
+│   ├── menu_controller.py
 │
 ├── utils/
 │   ├── __init__.py
-│   ├── file_handler.py
+│   ├── constants.py
+│   ├── formatter.py
+│   ├── helpers.py
+│   ├── txt_handler.py
 │   ├── validators.py
+│
+├── views/
+│   ├── __init__.py
+│   ├── appliance_view.py
+│   ├── consumption_view.py
+│   ├── menu_view.py
+│   ├── user_view.py
+│   ├── report_view.py
+│
+├── tests/
+│   ├── test_users.py
+│   ├── test_consumption.py
+│   ├── test_reports.py
+│
+├── docs
+|   ├── arquitetura.md
+|   ├── backlog.md
+|   ├── fluxo_git.md
+|   ├── regras_negocio.md
