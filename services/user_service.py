@@ -1,49 +1,153 @@
-#Validação, criação de regras e organização de lógica em /service
+# Services = camada responsável pela lógica do sistema
+# Aqui ficam:
+# - validações
+# - regras de negócio
+# - organização dos dados
 
-#importação de dados
+# from = usado para importar partes específicas de outro arquivo
+# import = traz funções/classes/módulos para este arquivo
+
+
+# Importação de funções do repository de usuários
+# repositories = camada responsável por acessar arquivos TXT/dados
 from repositories.user_repository import (
+
+    # Função responsável por gerar próximo ID
     get_next_user_id,
-    create_user_repository
-)
 
-from utils.validators import (
-    validate_name,
-    validate_email
-)
+    # Função responsável por salvar usuário no TXT
+    create_user_repository,
 
-#criação do perfil de usuário
-def create_user_service(name, email, birthday, profile):
-   
-   #validação de dados e tratamento de exceções
-    if not validate_name(name):
-        return None, "Nome inválido."
-    if not validate_email(email):
-        return None, "E-mail inválido."
-
-    #geração de nova ID
-    new_id = get_next_user_id()
-
-    user = {
-        "id": new_id,
-        "name": name,
-        "email": email,
-        "birthday": birthday,
-        "profile": profile
-    }
-
-    create_user_repository(user)
-    
-    return user, None
-
-from repositories.user_repository import (
+    # Função responsável por buscar usuário pelo e-mail
     get_user_by_email
 )
 
+
+# Importação das funções de validação
+# utils = pasta de utilidades auxiliares
+from utils.validators import (
+
+    # Valida nome
+    validate_name,
+
+    # Valida formato do e-mail
+    validate_email,
+
+    # Valida IDs
+    validate_id,
+
+    # Verifica se campo está vazio
+    validate_not_empty
+)
+
+
+
+# def = usado para criar funções
+
+# create_user_service = função responsável pela lógica
+# de criação do usuário
+
+def create_user_service(
+
+    # Nome digitado pelo usuário
+    name,
+
+    # E-mail digitado
+    email,
+
+    # Data de aniversário
+    birthday,
+
+    # Perfil de consumo
+    profile
+):
+
+
+    # if = estrutura condicional
+
+    # not = inverte resultado lógico
+
+    # Verifica se nome é inválido
+    if not validate_name(name):
+
+        # return = devolve valor da função
+
+        # None = ausência de valor
+        return None, "Nome inválido."
+
+
+    # Verifica se e-mail está vazio
+    if not validate_not_empty(email):
+
+        return None, "E-mail obrigatório."
+
+
+    # Verifica se e-mail possui formato válido
+    if not validate_email(email):
+
+        return None, "E-mail inválido."
+
+
+    # Verifica se ID do perfil é válido
+    if not validate_id(profile):
+
+        return None, "Perfil inválido."
+
+
+    # Geração automática do novo ID
+    new_id = get_next_user_id()
+
+
+    # Cria dicionário representando usuário
+    # dict = estrutura chave:valor
+    user = {
+
+        # ID gerado automaticamente
+        "id": new_id,
+
+        # Nome
+        "name": name,
+
+        # E-mail
+        "email": email,
+
+        # Data de aniversário
+        "birthday": birthday,
+
+        # Perfil de consumo
+        "profile": profile
+    }
+
+
+    # Envia usuário para repository salvar no TXT
+    create_user_repository(user)
+
+
+    # Retorna usuário criado
+    # None indica ausência de erro
+    return user, None
+
+
+
+# Serviço responsável pelo login do usuário
 def login_user_service(email):
-    
+
+
+    # Busca usuário pelo e-mail
     user = get_user_by_email(email)
 
+
+    # Verifica se usuário NÃO foi encontrado
     if not user:
+
         return None, "Usuário não encontrado."
-    
+
+
+    # Verifica se e-mail está vazio
+    if not validate_not_empty(email):
+
+        return None, "E-mail obrigatório."
+
+
+    # Retorna usuário encontrado
     return user, None
