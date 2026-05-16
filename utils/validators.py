@@ -95,6 +95,16 @@ def validate_id(id):
         and id != "000"
     )
 
+# Função responsável por validar se ID existe na lista de IDs válidos
+def validate_existing_id(
+        # ID digitado
+        id,
+        # Lista de IDs existentes
+        valid_ids
+    ):
+    # in = verifica se valor existe na lista
+    # returna True se ID existir
+    return id in valid_ids
 
 # Função responsável por validar opções do menu
 def validate_menu_option(

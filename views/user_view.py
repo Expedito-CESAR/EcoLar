@@ -56,3 +56,9 @@ def show_success(message):
 
     # Exibe mensagem formatada de sucesso
     print(f"\n[SUCESSO] {message}")
+
+# Função responsável por solicitar perfil de consumo do usuário
+def get_profile_option():
+    #input() = captura texto digitado no terminal
+    #return = devolve valor digitado
+    return input("\nEscolha o ID do perfil: ")
