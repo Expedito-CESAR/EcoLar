@@ -93,17 +93,29 @@ def get_next_user_id():
     # Busca todos os usuários cadastrados
     users = get_all_users()
 
+    # Verifica se lista de usuário está vazia
+    if not users:
+        # Retorna primeiro ID do sistema
+        return "001"
+    
+    # max() = retorna maior valor encontrado
+    # int() = converte ID texto para inteiro
+    # for = percorre usuários
+    last_id = max(
+        # Obtém ID de cada usuário
+        int(user["id"])
+        # Percorre lista de usuários
+        for user in users
+    )
 
     # len() = retorna quantidade de itens da lista
     # + 1 = gera próximo ID
-
     # str() = converte número para texto
-
     # zfill(3) = completa com zeros à esquerda
     # Exemplo:
     # 1 -> 001
     # 15 -> 015
-    return str(len(users) + 1).zfill(3)
+    return str(last_id + 1).zfill(3)
 
 
 

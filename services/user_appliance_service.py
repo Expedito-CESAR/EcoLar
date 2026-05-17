@@ -9,6 +9,13 @@ from repositories.user_appliance_repository import (
     create_user_appliance_repository
 )
 
+# Importa as funções de validação
+from utils.validators import (
+    # Valida números positivos
+    validate_positive_number,
+    # Valida IDs
+    validate_id
+)
 
 # def = usado para criar funções
 
@@ -30,7 +37,19 @@ def create_user_appliance_service(
         monthly_days
 ):
 
-
+    # Verifica se ID do aparelho é válido
+    if not validate_id(appliance_id):
+        # retorna mensagem de erro
+        return "ID inválido."
+    # Verifica se tempo diário é positivo
+    if not validate_positive_number(daily_usage):
+        # retorna erro
+        return "Uso diário inválido."
+    # Verifica se dias mensais são positivos
+    if not validate_positive_number(monthly_days):
+        # retorna erro
+        return "Dias inválidos."
+        
     # Cria dicionário com dados do aparelho do usuário
     # dict = estrutura chave:valor
     user_appliance = {

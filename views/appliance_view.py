@@ -30,3 +30,25 @@ def show_appliance(appliances):
             # acessa nome do aparelho
             f"{appliance['name']}"
         )
+
+# Função responsável por solicitar ID do aparelho
+def get_appliance_id():
+    # input() = captura texto digitado
+    return input(
+        #\n = quebra de linha
+        "\nDigite o ID do aparelho (ou 0 para finalizar): "
+    )
+
+# Função responsável por solicitar tempo diário de uso do aparelho
+def get_daily_usage():
+    # Captura tempo em minutos
+    return input(
+        "Tempo médio diário de uso (minutos): "
+    )
+
+# Função responsável por solicitar quantidade de dias de uso mensal
+def get_monthly_days():
+    #captura quantidade de dias
+    return input(
+        "Quantos dias por mês utiliza: "
+    )

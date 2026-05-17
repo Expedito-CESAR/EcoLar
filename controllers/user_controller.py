@@ -28,7 +28,6 @@ from repositories.consumption_repository import (
     get_all_consumption_levels
 )
 
-
 # Importa funções da view do usuário
 # views = camada responsável pela interação visual com o terminal
 from views.user_view import (
@@ -40,6 +39,8 @@ from views.user_view import (
     get_user_email,
     # Captura data de nascimento
     get_user_birthday,
+    # Captura perfil de consumo
+    get_profile_option,
     # Exibe mensagem de erro
     show_error,
     # Exibe mensagem de sucesso
@@ -47,7 +48,16 @@ from views.user_view import (
 )
 
 # Importa função da view de aparelhos
-from views.appliance_view import show_appliance
+from views.appliance_view import (
+    # Exibe aparelhos disponíveis
+    show_appliance,
+    # Captura ID do aparelho
+    get_appliance_id,
+    # Captura tempo diário de uso
+    get_daily_usage,
+    # Captura dias de uso mensais
+    get_monthly_days
+)
 
 # Importa função da view de consumo
 from views.consumption_view import show_consumption_levels
@@ -60,7 +70,9 @@ from utils.validators import (
     # Verifica se ID é válido
     validate_id,
     # Verifica se opção do menu existe
-    validate_menu_option
+    validate_menu_option,
+    # Verifica existência real do ID
+    validate_existing_id
 )
 
 # def = usado para criar funções
@@ -78,8 +90,9 @@ def create_user_controller():
     levels = get_all_consumption_levels()
     # Exibe níveis disponíveis
     show_consumption_levels(levels)
-    # input() = captura texto digitado no terminal
-    profile = input("\nEscolha o ID do perfil: ")
+    # Solicita perfil de consumo usando VIEW
+    # desacoplando input() do controller
+    profile = get_profile_option()
     # Chama service de criação do usuário
     # user recebe dados do usuário
     # error recebe mensagem de erro caso exista
@@ -102,35 +115,56 @@ def create_user_controller():
     appliances = get_all_appliances()
     # exibe aparelhos disponíveis
     show_appliance(appliances)
+
+    # Lista que armazenará IDs válidos
+    valid_appliance_ids = []
+
+    # for = percorre aparelhos disponíveis
+    for appliance in appliances:
+        # append() = adiciona item na lista
+        valid_appliance_ids.append(
+            # Adiciona ID do aparelho
+            appliance["id"]
+        )
     
     # while = estrutura de repetição
     # True = loop infinito até encontrar break ou return
     while True:
         # loop interno para validar ID do aparelho
         while True:
-            # solicita ID do aparelho
-            appliance_id = input(
-                "\nDigite o ID do aparelho"
-                "(ou 0 para finalizar): "
-            )
+            # solicita ID do aparelho usando VIEW
+            appliance_id = get_appliance_id()
+
             # verifica se usuário quer finalizar cadastro
             if appliance_id == "0":
                 # exibe sucesso
                 show_success("Cadastro concluído.")
                 # finaliza função
                 return
-            # Verifica se ID é válido
-            if validate_id(appliance_id):
+            # Verifica: se ID possui formato válido e se ID realmente existe
+            # no sistema
+            if (
+                # Validação estrutural do ID
+                validate_id(appliance_id)
+                # and = ambas condições precisam ser verdadeiras
+                and
+                # valida existência real do ID
+                validate_existing_id(
+                    # ID digitado
+                    appliance_id,
+                    # Lista de IDs válidos
+                    valid_appliance_ids
+                )
+            ):
                 # break = encerra loop atual
                 break
             # Caso ID seja inválido aparece essa mensagem
             show_error("ID inválido.")
         # Loop para validar tempo diário
         while True:
-            # solicita minutos de uso diário ao usuário
-            daily_usage = input(
-             "Tempo médio diário de uso (minutos): "
-            )
+            # solicita minutos de uso diário ao usuário usando VIEW
+            daily_usage = get_daily_usage()
+
             # verifica se o valor é positivo
             if validate_positive_number(daily_usage):
                 # sai do loop
@@ -139,10 +173,9 @@ def create_user_controller():
             show_error("Digite um número válido.")
         # Loop para validar quantidade de dias de uso por mês
         while True:
-            # Recebe o valor de dias por mês do usuário
-            monthly_days = input(
-                "Quantos dias por mês utiliza: "
-            )
+            # Recebe o valor de dias por mês do usuário usando o VIEW
+            monthly_days = get_monthly_days()
+
             # verifica se o valor inserido é valido
             if validate_positive_number(monthly_days):
                 # sai do loop

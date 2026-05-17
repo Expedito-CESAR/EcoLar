@@ -132,7 +132,16 @@ def create_user_service(
 # Serviço responsável pelo login do usuário
 def login_user_service(email):
 
+   # Verifica se e-mail está vazio
+    if not validate_not_empty(email):
 
+        return None, "E-mail obrigatório."
+    
+    # Verifica validade do formato de e-mail
+    if not validate_email(email):
+    
+        return None, "E-mail inválido."
+    
     # Busca usuário pelo e-mail
     user = get_user_by_email(email)
 
@@ -141,13 +150,6 @@ def login_user_service(email):
     if not user:
 
         return None, "Usuário não encontrado."
-
-
-    # Verifica se e-mail está vazio
-    if not validate_not_empty(email):
-
-        return None, "E-mail obrigatório."
-
 
     # Retorna usuário encontrado
     return user, None
