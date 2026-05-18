@@ -1,13 +1,14 @@
-# from = usado para importar partes específicas de outro arquivo
-# import = traz funções/classes/módulos para este arquivo
-# Importa função principal do sistema
-# controllers = camada responsável por controlar o fluxo do sistema
-from controllers.menu_controller import start_system
+# main.py
+# Arquivo principal do sistema EcoLar
 
-# print() = exibe texto no terminal
-# \n = quebra de linha
-print("Sistema EcoLar iniciado\n")
+# Importa função responsável
+# por iniciar o sistema
+from controllers.menu_controller import (
+    start_system
+)
 
-# Chama função responsável por iniciar sistema
-# start_system() = ponto inicial da navegação
+# Exibe mensagem inicial
+print("\nSistema EcoLar iniciado.")
+
+# Inicializa sistema
 start_system()

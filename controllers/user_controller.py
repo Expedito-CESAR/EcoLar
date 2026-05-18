@@ -1,257 +1,255 @@
-# from = usado para importar partes específicas de outro arquivo
-# import = traz funções/classes/módulos para este arquivo
+# user_controller.py
+# Controller responsável pelo fluxo do usuário
 
-# Importa funções do arquivo user_service.py
+# Importa services relacionados ao usuário
 from services.user_service import (
-    # Função responsável por criar usuário
     create_user_service,
-    # Função responsável pelo login
     login_user_service
 )
 
-# Importa função relacionada aos aparelhos do usuário
+# Importa service responsável pelos aparelhos do usuário
 from services.user_appliance_service import (
-    # Serviço responsável por cadastrar aparelhos do usuário
     create_user_appliance_service
-    )
+)
 
-# Importa função do repository de aparelhos
-# repositories = camada responsável por acessar arquivos TXT/dados
+# Importa repositories
 from repositories.appliance_repository import (
-    # Função que retorna todos os aparelhos cadastrados
     get_all_appliances
 )
 
-# Importa repository dos níveis de consumo
 from repositories.consumption_repository import (
-    # Função que retorna todos os níveis de consumo
     get_all_consumption_levels
 )
 
-# Importa funções da view do usuário
-# views = camada responsável pela interação visual com o terminal
+# Importa views do usuário
 from views.user_view import (
-    # Mostra título do cadastro
     show_user_registration_title,
-    # Captura nome digitado pelo usuário
     get_user_name,
-    # Captura e-mail digitado
     get_user_email,
-    # Captura data de nascimento
     get_user_birthday,
-    # Captura perfil de consumo
     get_profile_option,
-    # Exibe mensagem de erro
     show_error,
-    # Exibe mensagem de sucesso
-    show_success
+    show_success,
+    show_user_profile
 )
 
-# Importa função da view de aparelhos
+# Importa views de aparelhos
 from views.appliance_view import (
-    # Exibe aparelhos disponíveis
     show_appliance,
-    # Captura ID do aparelho
     get_appliance_id,
-    # Captura tempo diário de uso
     get_daily_usage,
-    # Captura dias de uso mensais
     get_monthly_days
 )
 
-# Importa função da view de consumo
-from views.consumption_view import show_consumption_levels
+# Importa view de consumo
+from views.consumption_view import (
+    show_consumption_levels
+)
 
-# Importa funções de validação
-# validators = arquivo responsável por validar entradas do usuário
+# Importa menu do usuário
+from views.menu_view import (
+    show_user_menu
+)
+
+# Importa validações
 from utils.validators import (
-    # Verifica se número é positivo
-    validate_positive_number,
-    # Verifica se ID é válido
-    validate_id,
-    # Verifica se opção do menu existe
     validate_menu_option,
-    # Verifica existência real do ID
     validate_existing_id
 )
 
-# def = usado para criar funções
-# create_user_controller = função responsável pelo fluxo de cadastro
+# Controller responsável pelo cadastro de usuários
 def create_user_controller():
-    # Exibe título do cadastro
+
+    # Exibe título da tela
     show_user_registration_title()
-    # Recebe nome do usuário
+
+    # Captura dados do usuário
     name = get_user_name()
-    # Recebe e-mail
     email = get_user_email()
-    # Recebe data de aniversário
     birthday = get_user_birthday()
-    # Busca níveis de consumo no repository
+
+    # Busca perfis disponíveis
     levels = get_all_consumption_levels()
-    # Exibe níveis disponíveis
+
+    # Exibe perfis
     show_consumption_levels(levels)
-    # Solicita perfil de consumo usando VIEW
-    # desacoplando input() do controller
+
+    # Captura perfil escolhido
     profile = get_profile_option()
-    # Chama service de criação do usuário
-    # user recebe dados do usuário
-    # error recebe mensagem de erro caso exista
+
+    # Chama service responsável pela criação
     user, error = create_user_service(
         name,
         email,
         birthday,
         profile
     )
-    # if = estrutura condicional
-    # Verifica se houve erro
+
+    # Verifica se ocorreu erro
     if error:
-        # Exibe erro na tela
+
         show_error(error)
-        # return = encerra função atual
         return
 
+    # Exibe mensagem de sucesso
+    show_success("Usuário cadastrado com sucesso.")
 
-    # busca aparelhos cadastrados
+# Controller responsável pelo login
+def login_user_controller():
+
+    print("\n===== LOGIN =====")
+
+    # Captura e-mail digitado
+    email = get_user_email()
+
+    # Chama service de login
+    user, error = login_user_service(email)
+
+    # Verifica erro
+    if error:
+
+        show_error(error)
+        return
+
+    # Exibe sucesso
+    show_success(f"Bem-vindo, {user['name']}.")
+
+    # Abre menu do usuário
+    user_menu_controller(user)
+
+# Controller responsável pelo menu do usuário
+def user_menu_controller(user):
+
+    # Loop principal do menu
+    while True:
+
+        # Exibe menu
+        show_user_menu()
+
+        # Captura opção
+        option = input("\nEscolha uma opção: ")
+
+        # Valida opção
+        if not validate_menu_option(
+            option,
+            ["1", "2", "3", "4", "5", "6", "7", "0"]
+        ):
+
+            show_error("Opção inválida.")
+            continue
+
+        # Meu perfil
+        if option == "1":
+
+            show_profile_controller(user)
+
+        # Gerenciar aparelhos
+        elif option == "2":
+
+            add_user_appliance_controller(user)
+
+        # Consumo energético
+        elif option == "3":
+
+            print("\nFunção em desenvolvimento.")
+
+        # Relatórios
+        elif option == "4":
+
+            print("\nFunção em desenvolvimento.")
+
+        # Recomendações
+        elif option == "5":
+
+            print("\nFunção em desenvolvimento.")
+
+        # Simulação
+        elif option == "6":
+
+            print("\nFunção em desenvolvimento.")
+
+        # Excluir conta
+        elif option == "7":
+
+            delete_user_controller(user)
+            break
+
+        # Logout
+        elif option == "0":
+
+            print("\nLogout realizado.")
+            break
+
+# Controller responsável por exibir perfil
+def show_profile_controller(user):
+
+    show_user_profile(user)
+
+# Controller responsável por adicionar aparelhos
+def add_user_appliance_controller(user):
+
+    # Busca aparelhos disponíveis
     appliances = get_all_appliances()
-    # exibe aparelhos disponíveis
+
+    # Exibe aparelhos
     show_appliance(appliances)
 
-    # Lista que armazenará IDs válidos
-    valid_appliance_ids = []
+    # Lista contendo IDs válidos
+    valid_ids = []
 
-    # for = percorre aparelhos disponíveis
+    # Percorre aparelhos
     for appliance in appliances:
-        # append() = adiciona item na lista
-        valid_appliance_ids.append(
-            # Adiciona ID do aparelho
-            appliance["id"]
-        )
-    
-    # while = estrutura de repetição
-    # True = loop infinito até encontrar break ou return
+
+        valid_ids.append(appliance["id"])
+
+    # Loop de cadastro
     while True:
-        # loop interno para validar ID do aparelho
-        while True:
-            # solicita ID do aparelho usando VIEW
-            appliance_id = get_appliance_id()
 
-            # verifica se usuário quer finalizar cadastro
-            if appliance_id == "0":
-                # exibe sucesso
-                show_success("Cadastro concluído.")
-                # finaliza função
-                return
-            # Verifica: se ID possui formato válido e se ID realmente existe
-            # no sistema
-            if (
-                # Validação estrutural do ID
-                validate_id(appliance_id)
-                # and = ambas condições precisam ser verdadeiras
-                and
-                # valida existência real do ID
-                validate_existing_id(
-                    # ID digitado
-                    appliance_id,
-                    # Lista de IDs válidos
-                    valid_appliance_ids
-                )
-            ):
-                # break = encerra loop atual
-                break
-            # Caso ID seja inválido aparece essa mensagem
-            show_error("ID inválido.")
-        # Loop para validar tempo diário
-        while True:
-            # solicita minutos de uso diário ao usuário usando VIEW
-            daily_usage = get_daily_usage()
+        # Captura ID do aparelho
+        appliance_id = get_appliance_id()
 
-            # verifica se o valor é positivo
-            if validate_positive_number(daily_usage):
-                # sai do loop
-                break
-            # Monstra mensagem se houve erro
-            show_error("Digite um número válido.")
-        # Loop para validar quantidade de dias de uso por mês
-        while True:
-            # Recebe o valor de dias por mês do usuário usando o VIEW
-            monthly_days = get_monthly_days()
+        # Finaliza cadastro
+        if appliance_id == "0":
 
-            # verifica se o valor inserido é valido
-            if validate_positive_number(monthly_days):
-                # sai do loop
-                break
-            # mostra erro se houver
-            show_error("Digite um número válido.")
-        # chama service para salvar aparelho do usuário
-        create_user_appliance_service(
-            # ID do usuário criado
-            user["id"],
-            # ID do aparelho
+            break
+
+        # Valida existência do ID
+        if not validate_existing_id(
             appliance_id,
-            # Tempo de uso diário em minutos
+            valid_ids
+        ):
+
+            show_error("ID de aparelho inválido.")
+            continue
+
+        # Captura uso diário
+        daily_usage = get_daily_usage()
+
+        # Captura dias mensais
+        monthly_days = get_monthly_days()
+
+        # Chama service
+        error = create_user_appliance_service(
+            user["id"],
+            appliance_id,
             daily_usage,
-            # Dias de uso por mês
             monthly_days
         )
 
-# Função responsável pelo login
-def login_user_controller():
-    # solicita e-mail
-    email = input("\nDigite seu e-mail: ")
-    # chama service de login
-    user, error = login_user_service(email)
-    # verifica erro
-    if error:
-        # mostra erro
-        show_error(error)
-        # encerra função
-        return
-    # exibe mensagem de boas-vindas
-    show_success(
-        f"Bem-vindo, {user['name']}!"
+        # Verifica erro
+        if error:
+
+            show_error(error)
+
+        else:
+
+            show_success(
+                "Aparelho cadastrado com sucesso."
+            )
+
+# Controller responsável pela exclusão do usuário
+def delete_user_controller(user):
+
+    print(
+        f"\nUsuário {user['name']} removido do sistema."
     )
-    # abre menu do usuário
-    user_menu_controller(user)
-
-# função do menu interno do usuário
-def user_menu_controller(user):
-    # loop infinito do menu
-     while True:
-        # print() = exibe texto no terminal
-        # \n = quebra de linha
-        print("\n===== MENU DO USUÁRIO =====")
-        print("1 - Atualizar cadastro")
-        print("2 - Relatórios")
-        print("3 - Gerenciar aparelhos")
-        print("4 - Excluir conta")
-        print("0 - Logout")
-
-        # captura opção digitada
-        option = input("\nEscolha uma opção: ")
-        # verifica se opção existe
-        if not validate_menu_option(
-            option,
-            ["1", "2", "3", "4", "0"]
-        ):
-            # mostra erro
-            print("\nOpção inválida.")
-            # continue = reinicia loop atual
-            continue
-        
-        # estrutura condicional do menu
-        if option == "1":
-            print("Função em desenvolvimento.")
-            
-        elif option == "2":
-            print("Função em desenvolvimento.")
-            
-        elif option == "3":
-            print("Função em desenvolvimento.")
-
-        elif option == "4":
-            print("Função em desenvolvimento.")
-
-        elif option == "0":
-            print("\nLogout realizado.")
-            # sai do loop
-            break

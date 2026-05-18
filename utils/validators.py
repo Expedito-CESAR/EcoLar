@@ -120,3 +120,32 @@ def validate_menu_option(
 
     # Retorna True se opção existir
     return option in valid_options
+
+# Valida datas simples no formato DD/MM/AAAA
+def validate_date(date):
+
+    # Divide a data utilizando "/"
+    parts = date.split("/")
+
+    # Verifica se existem 3 partes
+    if len(parts) != 3:
+        return False
+    
+    # Verifica se todos os camps possuem apenas números
+    return (
+        parts[0].isdigit()
+        and parts[1].isdigit()
+        and parts[2].isdigit()
+    )
+
+# Valida números decimais positivos
+def validate_float(value):
+
+    # try = tenta converter valor para float
+    try:
+        # Verifica se valor é maior que zero
+        return float(value) > 0
+    
+    # Caso valor seja inválido
+    except ValueError:
+        return False

@@ -62,3 +62,14 @@ def get_profile_option():
     #input() = captura texto digitado no terminal
     #return = devolve valor digitado
     return input("\nEscolha o ID do perfil: ")
+
+# Exibe informações do usuário
+def show_user_profile(user):
+
+    print("\n===== MEU PERFIL =====")
+
+    print(f"ID: {user['id']}")
+    print(f"Nome: {user['name']}")
+    print(f"E-mail: {user['email']}")
+    print(f"Nascimento: {user['birthday']}")
+    print(f"Perfil de consumo: {user['profile']}")
