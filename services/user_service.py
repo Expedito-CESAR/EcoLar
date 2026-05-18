@@ -3,10 +3,8 @@
 # - validações
 # - regras de negócio
 # - organização dos dados
-
 # from = usado para importar partes específicas de outro arquivo
 # import = traz funções/classes/módulos para este arquivo
-
 
 # Importação de funções do repository de usuários
 # repositories = camada responsável por acessar arquivos TXT/dados
@@ -64,35 +62,34 @@ def create_user_service(
 
 
     # if = estrutura condicional
-
     # not = inverte resultado lógico
-
     # Verifica se nome é inválido
     if not validate_name(name):
 
         # return = devolve valor da função
-
         # None = ausência de valor
         return None, "Nome inválido."
-
 
     # Verifica se e-mail está vazio
     if not validate_not_empty(email):
 
         return None, "E-mail obrigatório."
 
-
     # Verifica se e-mail possui formato válido
     if not validate_email(email):
 
         return None, "E-mail inválido."
-
 
     # Verifica se ID do perfil é válido
     if not validate_id(profile):
 
         return None, "Perfil inválido."
 
+    # Verifica se e-mail já está cadastrado
+    existing_user = get_user_by_email(email)
+
+    if existing_user:
+        return None, "E-mail já cadastrado"
 
     # Geração automática do novo ID
     new_id = get_next_user_id()
