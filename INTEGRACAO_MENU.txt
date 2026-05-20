@@ -1,0 +1,133 @@
+# COMO INTEGRAR AO MENU - PASSO A PASSO MUITO SIMPLES
+
+## PASSO 1: Abra o arquivo user_controller.py
+
+Arquivo: `controllers/user_controller.py`
+
+---
+
+## PASSO 2: Adicione import no TOPO do arquivo
+
+Procure a linha com:
+```python
+from views.menu_view import (
+    show_user_menu
+)
+```
+
+E adicione ABAIXO:
+```python
+from controllers.energy_simple_controller import (
+    mostrar_consumo_simples,
+    mostrar_classificacao,
+    mostrar_economia_simples,
+    mostrar_opcoes_economia
+)
+```
+
+---
+
+## PASSO 3: Crie uma NOVA funcao no FINAL do arquivo
+
+Copie e cole isto no FINAL do arquivo user_controller.py:
+
+```python
+# Controller para menu de energia
+def menu_energia_controller(user):
+
+    # while = loop infinito ate break
+    while True:
+
+        print("\n===== MENU DE ENERGIA =====")
+        print("1 - Consumo simples")
+        print("2 - Classificacao")
+        print("3 - Economia simples")
+        print("4 - Opcoes de economia")
+        print("0 - Voltar")
+
+        opcao = input("\nEscolha opcao: ")
+
+        # if/elif/else para cada opcao
+        if opcao == "1":
+            mostrar_consumo_simples(user)
+
+        elif opcao == "2":
+            mostrar_classificacao(user)
+
+        elif opcao == "3":
+            mostrar_economia_simples(user)
+
+        elif opcao == "4":
+            mostrar_opcoes_economia(user)
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opcao invalida")
+```
+
+---
+
+## PASSO 4: Modifique a funcao user_menu_controller()
+
+Procure a funcao `user_menu_controller()` que tem este trecho:
+
+```python
+# Consumo energetico
+elif option == "3":
+
+    show_consumption_report_controller(user)
+```
+
+Mude para:
+
+```python
+# Consumo energetico
+elif option == "3":
+
+    menu_energia_controller(user)
+```
+
+---
+
+## PRONTO!
+
+Agora quando o usuario escolher opcao 3 no menu, vai aparecer o menu de energia!
+
+---
+
+## TESTE:
+
+1. Rode: `python main.py`
+2. Login com usuario 001
+3. Escolha opcao 3
+4. Escolha opcao 1 (Consumo simples)
+5. Vai exibir o consumo!
+
+---
+
+## ESTRUTURA FINAL:
+
+```
+Menu Principal
+└── Usuario Menu
+    └── 3 - Consumo Energetico (NOVO)
+        ├── 1 - Consumo simples
+        ├── 2 - Classificacao
+        ├── 3 - Economia simples
+        └── 4 - Opcoes de economia
+```
+
+---
+
+## SE HOUVER ERRO:
+
+1. Verifique se importou corretamente
+2. Verifique se arquivos .py existem
+3. Verifique indentacao (espacos)
+4. Tente rodar: `python3 exemplo_simples_energia.py`
+
+---
+
+TUDO MUITO SIMPLES!

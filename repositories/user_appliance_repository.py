@@ -89,7 +89,7 @@ def get_all_user_appliances():
 def get_user_appliances_by_user_id(user_id):
 
     # Lista que armazenará os vínculos encontrados entre usuário e aparelhos
-    filtered_user_aplliances = []
+    filtered_user_appliances = []
 
     # Busca todos os vínculos cadastrados
     user_appliances = get_all_user_appliances()
@@ -101,10 +101,10 @@ def get_user_appliances_by_user_id(user_id):
         if user_appliance["user_id"] == user_id:
 
             # append() = adiciona vínculo na lista
-            filtered_user_aplliances.append(user_appliance)
+            filtered_user_appliances.append(user_appliance)
     
     # return = devolve lista filtrada
-    return filtered_user_aplliances
+    return filtered_user_appliances
 
 # Função responsável por buscar usuários vinculados a um aparelho
 def get_user_appliances_by_appliance_id(appliance_id):

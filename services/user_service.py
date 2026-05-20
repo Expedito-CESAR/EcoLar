@@ -37,7 +37,10 @@ from utils.validators import (
     validate_id,
 
     # Verifica se campo está vazio
-    validate_not_empty
+    validate_not_empty,
+
+    # Valida formato de data
+    validate_date
 )
 
 
@@ -86,6 +89,16 @@ def create_user_service(
     if not validate_id(profile):
 
         return None, "Perfil inválido."
+
+    # Verifica se data de aniversário está vazia
+    if not validate_not_empty(birthday):
+
+        return None, "Data de aniversário obrigatória."
+
+    # Verifica se data está no formato correto DD/MM/AAAA
+    if not validate_date(birthday):
+
+        return None, "Data inválida. Use o formato: DD/MM/AAAA"
 
     # Verifica se e-mail já está cadastrado
     existing_user = get_user_by_email(email)

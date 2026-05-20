@@ -55,6 +55,10 @@ def read_txt_file(
                 # ";" = separador dos dados no TXT
                 data = line.split(";")
 
+                # Remove espaços em branco de cada campo
+                # strip() = remove espaços, tabs e quebras de linha
+                data = [field.strip() for field in data]
+
                 # len() = retorna quantidade de itens da lista
                 # Verifica se quantidade de colunas está correta
                 if len(data) != expected_fields:
