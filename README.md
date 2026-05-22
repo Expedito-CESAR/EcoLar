@@ -75,7 +75,9 @@ EcoLar/
 │   ├── user_appliance_service.py
 │   ├── appliance_service.py
 │   ├── consumption_service.py
-│   ├── recommendation_service.py
+│   ├── energy_classification_service.py
+│   ├── report_service.py
+│   ├── simulation_service.py
 │
 ├── controllers/
 │   ├── __init__.py
@@ -83,6 +85,7 @@ EcoLar/
 │   ├── appliance_controller.py
 │   ├── report_controller.py
 │   ├── menu_controller.py
+│   ├── energy_controller.py
 │
 ├── utils/
 │   ├── __init__.py
@@ -100,6 +103,5 @@ EcoLar/
 │
 ├── docs
 |   ├── arquitetura.md
-|   ├── backlog.md
+|   ├── guia_consumo_energia.md
 |   ├── fluxo_git.md
-|   ├── regras_negocio.md

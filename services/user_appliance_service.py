@@ -6,9 +6,10 @@
 # Importa função responsável por salvar aparelhos do usuário
 # repositories = camada responsável por acessar arquivos TXT/dados
 from repositories.user_appliance_repository import (
-
-    # Função que salva aparelho associado ao usuário
-    create_user_appliance_repository
+    create_user_appliance_repository,
+    update_user_appliance_repository,
+    delete_user_appliance_repository,
+    delete_user_appliances_by_user_id
 )
 
 # Importa as funções de validação
@@ -62,13 +63,47 @@ def create_user_appliance_service(
         # ID do aparelho
         "appliance_id": appliance_id,
 
-        # Tempo diário de uso
-        "daily_usage": daily_usage,
+        # Converte valores para inteiro
+        # antes da persistência
+        "daily_usage": int(daily_usage),
 
-        # Dias utilizados no mês
-        "monthly_days": monthly_days
+        "monthly_days": int(monthly_days)
     }
 
 
     # Chama repository responsável por salvar no TXT
     create_user_appliance_repository(user_appliance)
+
+    # Atualiza aparelho vinculado ao usuário
+
+def update_user_appliance_service(
+    updated_appliance
+):
+
+    return update_user_appliance_repository(
+        updated_appliance
+    )
+
+
+# Remove aparelho específico do usuário
+
+def delete_user_appliance_service(
+    user_id,
+    appliance_id
+):
+
+    return delete_user_appliance_repository(
+        user_id,
+        appliance_id
+    )
+
+
+# Remove todos os aparelhos vinculados ao usuário
+
+def delete_all_user_appliances_service(
+    user_id
+):
+
+    return delete_user_appliances_by_user_id(
+        user_id
+    )

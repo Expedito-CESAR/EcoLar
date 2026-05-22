@@ -1,15 +1,15 @@
 # menu_view.py
 
+from utils.formatter import (
+    show_title
+)
+
 # def = usado para criar funções
 # show_main_menu = função responsável por exibir
 # o menu principal do sistema
 def show_main_menu():
 
-    # print() = exibe texto no terminal
-    # \n = quebra de linha
-    print("\n==============================")
-    print("        SISTEMA ECOLAR")
-    print("==============================")
+    show_title("Sistema EcoLar")
 
     # Exibe opção de login
     print("1 - Login")
@@ -21,10 +21,7 @@ def show_main_menu():
 # Função responsável por exibir o menu do usuário
 def show_user_menu():
 
-    # print() = exibe texto no terminal
-    print("\n==============================")
-    print("         MENU DO USUÁRIO")
-    print("==============================")
+    show_title("Menu do Usuário")
 
     # opções do sistema
     print("1 - Meu Perfil")

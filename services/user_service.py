@@ -3,7 +3,9 @@
 from repositories.user_repository import (
     get_next_user_id,
     create_user_repository,
-    get_user_by_email
+    get_user_by_email,
+    update_user_repository,
+    delete_user_repository
 )
 
 from utils.validators import (
@@ -69,3 +71,18 @@ def login_user_service(email):
         return None, "Usuário não encontrado."
 
     return user, None
+
+# Atualiza dados do usuário
+# Controller chama service
+# Service chama repository
+
+def update_user_service(user):
+
+    return update_user_repository(user)
+
+
+# Remove usuário do sistema
+
+def delete_user_service(user_id):
+
+    return delete_user_repository(user_id)

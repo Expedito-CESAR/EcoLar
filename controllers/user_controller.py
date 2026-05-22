@@ -1,5 +1,9 @@
 # user_controller.py
 
+from controllers.energy_controller import (
+    show_energy_menu_controller
+)
+
 from services.user_service import (
     create_user_service,
     login_user_service
@@ -10,7 +14,8 @@ from services.user_appliance_service import (
 )
 
 from services.appliance_service import (
-    get_all_appliances_service
+    get_all_appliances_service,
+    get_user_appliances_service
 )
 
 from services.consumption_service import (
@@ -27,16 +32,15 @@ from controllers.appliance_controller import (
     list_user_appliances_controller
 )
 
-from repositories.user_repository import (
-    update_user_repository,
-    delete_user_repository
+from services.user_service import (
+    update_user_service,
+    delete_user_service
 )
 
-from repositories.user_appliance_repository import (
-    get_user_appliances_by_user_id,
-    update_user_appliance_repository,
-    delete_user_appliance_repository,
-    delete_user_appliances_by_user_id
+from services.user_appliance_service import (
+    update_user_appliance_service,
+    delete_user_appliance_service,
+    delete_all_user_appliances_service
 )
 
 from views.user_view import (
@@ -72,6 +76,10 @@ from utils.validators import (
     validate_name,
     validate_positive_number,
     validate_date
+)
+
+from utils.formatter import (
+    show_title
 )
 
 def create_user_controller():
@@ -128,7 +136,7 @@ def create_user_controller():
 
 def login_user_controller():
 
-    print("\n===== LOGIN =====")
+    show_title("Login")
 
     email = get_user_email()
 
@@ -177,7 +185,7 @@ def user_menu_controller(user):
 
         elif option == "4":
 
-            show_consumption_report_controller(user)
+            show_energy_menu_controller(user)
 
         elif option == "5":
 
@@ -220,7 +228,7 @@ def add_user_appliance_controller(user):
         )
 
     existing_appliances = (
-        get_user_appliances_by_user_id(
+        get_user_appliances_service(
             user["id"]
         )
     )
@@ -290,7 +298,7 @@ def update_user_menu_controller(user):
 
     while True:
 
-        print("\n===== ATUALIZAR CADASTRO =====")
+        show_title("Atualizar Cadastro")
 
         print("1 - Atualizar nome")
         print("2 - Atualizar e-mail")
@@ -347,7 +355,7 @@ def update_user_name_controller(user):
 
     user["name"] = new_name
 
-    update_user_repository(user)
+    update_user_service(user)
 
     show_success(
         "Nome atualizado com sucesso."
@@ -364,7 +372,7 @@ def update_user_email_controller(user):
 
     user["email"] = new_email
 
-    update_user_repository(user)
+    update_user_service(user)
 
     show_success(
         "E-mail atualizado com sucesso."
@@ -397,7 +405,7 @@ def update_user_profile_controller(user):
 
     user["profile"] = new_profile
 
-    update_user_repository(user)
+    update_user_service(user)
 
     show_success(
         "Perfil atualizado com sucesso."
@@ -406,7 +414,7 @@ def update_user_profile_controller(user):
 def update_user_appliance_controller(user):
 
     user_appliances = (
-        get_user_appliances_by_user_id(
+        get_user_appliances_service(
             user["id"]
         )
     )
@@ -419,7 +427,7 @@ def update_user_appliance_controller(user):
 
         return
 
-    print("\n===== ATUALIZAR APARELHO =====")
+    show_title("Atualizar Aparelho")
 
     valid_ids = []
 
@@ -493,7 +501,7 @@ def update_user_appliance_controller(user):
     }
 
     success = (
-        update_user_appliance_repository(
+        update_user_appliance_service(
             updated_appliance
         )
     )
@@ -513,7 +521,7 @@ def update_user_appliance_controller(user):
 def remove_user_appliance_controller(user):
 
     user_appliances = (
-        get_user_appliances_by_user_id(
+        get_user_appliances_service(
             user["id"]
         )
     )
@@ -526,7 +534,7 @@ def remove_user_appliance_controller(user):
 
         return
 
-    print("\n===== REMOVER APARELHO =====")
+    show_title("Remover Aparelho")
 
     valid_ids = []
 
@@ -557,7 +565,7 @@ def remove_user_appliance_controller(user):
         return
 
     success = (
-        delete_user_appliance_repository(
+        delete_user_appliance_service(
             user["id"],
             appliance_id
         )
@@ -577,11 +585,11 @@ def remove_user_appliance_controller(user):
 
 def delete_user_controller(user):
 
-    delete_user_appliances_by_user_id(
+    delete_all_user_appliances_service(
         user["id"]
     )
 
-    success = delete_user_repository(
+    success = delete_user_service(
         user["id"]
     )
 

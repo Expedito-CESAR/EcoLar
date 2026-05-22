@@ -6,9 +6,13 @@ from services.report_service import (
     get_simulation_service
 )
 
+from utils.formatter import (
+    show_title
+)
+
 def show_consumption_report_controller(user):
 
-    print("\n===== RELATÓRIO ENERGÉTICO =====")
+    show_title("Relatório Energético")
 
     report = get_consumption_report_service(
         user["id"]
@@ -30,7 +34,7 @@ def show_consumption_report_controller(user):
 
 def show_recommendations_controller(user):
 
-    print("\n===== RECOMENDAÇÕES =====")
+    show_title("Recomendações")
 
     recommendations = (
         get_recommendations_service(
@@ -48,7 +52,7 @@ def show_recommendations_controller(user):
 
 def show_simulation_controller(user):
 
-    print("\n===== SIMULAÇÃO DE ECONOMIA =====")
+    show_title("Simulação de Economia")
 
     simulation = get_simulation_service()
 

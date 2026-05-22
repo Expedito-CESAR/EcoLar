@@ -16,10 +16,18 @@ from services.simulation_service import (
     simulate_multiple_reductions
 )
 
+from views.user_view import (
+    show_error
+)
+
+from utils.formatter import (
+    show_title
+)
+
 
 def show_consumption(user):
 
-    print("\n===== CONSUMO DE ENERGIA =====\n")
+    show_title("Consumo de Energia")
 
     consumption = calculate_user_consumption(user["id"])
 
@@ -31,7 +39,7 @@ def show_consumption(user):
 
 def show_classification(user):
 
-    print("\n===== CLASSIFICACAO ENERGETICA =====\n")
+    show_title("Classificação Energética")
 
     data = classify_consumption(user["id"])
 
@@ -50,7 +58,7 @@ def show_classification(user):
 
 def show_savings(user):
 
-    print("\n===== ECONOMIA POTENCIAL =====\n")
+    show_title("Economia Potencial")
 
     savings = simulate_savings(user["id"], 30)
 
@@ -90,3 +98,54 @@ def show_savings_options(user):
     print(f"Novo consumo: {opt3['new_consumption']} kWh")
     print(f"Economia mensal: R$ {opt3['monthly_savings']}")
     print(f"Economia anual: R$ {opt3['annual_savings']}")
+
+# Controller responsável pelo submenu energético
+# Centraliza funcionalidades relacionadas ao consumo
+
+def show_energy_menu_controller(user):
+
+    # Loop do submenu energético
+    while True:
+
+        show_title("Energia")
+
+        print("1 - Ver consumo")
+        print("2 - Ver classificação")
+        print("3 - Simular economia")
+        print("4 - Opções de economia")
+        print("0 - Voltar")
+
+        # Captura opção do usuário
+        option = input(
+            "\nEscolha uma opção: "
+        )
+
+        # Exibe consumo energético
+        if option == "1":
+
+            show_consumption(user)
+
+        # Exibe classificação energética
+        elif option == "2":
+
+            show_classification(user)
+
+        # Exibe simulação simples
+        elif option == "3":
+
+            show_savings(user)
+
+        # Exibe múltiplas opções de economia
+        elif option == "4":
+
+            show_savings_options(user)
+
+        # Retorna ao menu anterior
+        elif option == "0":
+
+            break
+
+        # Trata opções inválidas
+        else:
+
+            show_error("Opção inválida.")

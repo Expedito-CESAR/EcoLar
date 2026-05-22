@@ -1,12 +1,26 @@
 # validators.py
 
+from datetime import datetime
+
 def validate_name(name):
     return name.strip() != ""
 
 
-def validate_email(email):
-    return "@" in email and "." in email
+# Validação simples de e-mail
+# Coerente com nível do projeto
 
+def validate_email(email):
+
+    return (
+
+        "@" in email
+
+        and "." in email
+
+        and " " not in email
+
+        and len(email) >= 5
+    )
 
 def validate_not_empty(value):
     return value.strip() != ""
@@ -33,17 +47,22 @@ def validate_existing_id(id, valid_ids):
 def validate_menu_option(option, valid_options):
     return option in valid_options
 
+# Valida datas reais no formato DD/MM/AAAA
+
 def validate_date(date):
-    parts = date.split("/")
 
-    if len(parts) != 3:
+    try:
+
+        datetime.strptime(
+            date,
+            "%d/%m/%Y"
+        )
+
+        return True
+
+    except ValueError:
+
         return False
-
-    return (
-        parts[0].isdigit()
-        and parts[1].isdigit()
-        and parts[2].isdigit()
-    )
 
 def validate_float(value):
     try:

@@ -6,6 +6,10 @@ from repositories.appliance_repository import (
     get_all_appliances
 )
 
+from utils.formatter import (
+    show_title
+)
+
 # Importa repositories de vínculos usuário/aparelho
 from repositories.user_appliance_repository import (
 
@@ -22,7 +26,7 @@ from repositories.user_appliance_repository import (
 # Exibe aparelhos cadastrados pelo usuário
 def list_user_appliances_controller(user):
 
-    print("\n===== MEUS APARELHOS =====")
+    show_title("Meus Aparelhos")
 
     # Busca vínculos do usuário
     user_appliances = (
@@ -72,38 +76,3 @@ def list_user_appliances_controller(user):
 # Função responsável por remover
 # todos os aparelhos vinculados
 # a um usuário específico
-
-def delete_user_appliances_by_user_id(user_id):
-
-    # Busca todos os vínculos cadastrados
-    user_appliances = (
-        get_all_user_appliances()
-    )
-
-    # Lista que armazenará apenas
-    # vínculos que NÃO pertencem
-    # ao usuário removido
-    filtered_user_appliances = []
-
-    # for = percorre todos os vínculos
-    for user_appliance in user_appliances:
-
-        # Verifica se vínculo atual
-        # pertence a outro usuário
-        if (
-            user_appliance["user_id"]
-            !=
-            user_id
-        ):
-
-            # append() = adiciona vínculo
-            # na nova lista filtrada
-            filtered_user_appliances.append(
-                user_appliance
-            )
-
-    # Salva lista atualizada
-    # sem os vínculos removidos
-    save_all_user_appliances(
-        filtered_user_appliances
-    )
