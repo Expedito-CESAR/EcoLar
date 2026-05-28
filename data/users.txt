@@ -2,3 +2,4 @@
 002;Amanda;aaa5@cesar.school;14/05/1997;002
 003;Sofia;rmla@cesar.school;04/03/2020;003
 004;Lucas Veiga;lvasl@cesar.school;12/09/1997;003
+006;Mauricio Acioly;mauricioacioly@gmail.com;19/08/2003;001
