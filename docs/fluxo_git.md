@@ -1,156 +1,230 @@
-# Fluxo Git da Equipe EcoLar
+# Fluxo Git — Projeto EcoLar
 
-O projeto EcoLar utiliza Git e GitHub como ferramentas de versionamento e colaboração entre os membros da equipe.
+O projeto EcoLar utiliza Git e GitHub para controle de versão, organização do desenvolvimento e colaboração entre os integrantes da equipe.
 
-## O objetivo do fluxo Git
+---
 
-1. organizar o desenvolvimento;
-2. evitar conflitos;
-3. reduzir retrabalho;
-4. manter estabilidade do projeto;
-5. permitir trabalho simultâneo entre os membros da equipe.
+# Objetivos do Fluxo Git
 
-## Estrutura de Branches
+O fluxo adotado possui os seguintes objetivos:
 
-O projeto utuliza uma estrutura simples baseada em:
+* organizar o desenvolvimento da equipe;
+* reduzir conflitos entre alterações;
+* manter estabilidade do projeto;
+* facilitar integração das funcionalidades;
+* permitir desenvolvimento simultâneo.
 
+---
+
+# Estrutura de Branches
+
+O projeto utiliza uma estrutura simples baseada em três níveis de branches:
+
+```plaintext
 main
-dev
+DEV
 branch-pessoal
+```
 
-1. Branch Main
-Objetivo
+---
 
-A branch main representa a versão estável do sistema.
+# 1. Branch Main
+
+## Objetivo
+
+A branch `main` representa a versão estável e final do sistema.
 
 Ela deve conter apenas:
 
-código funcional;
-funcionalidades testadas;
-versões prontas para entrega.
-Regras da Main
-Nunca desenvolver diretamente na main;
-Nunca enviar código incompleto;
-Apenas realizar merge de versões estáveis.
+* funcionalidades concluídas;
+* código testado;
+* versões prontas para entrega.
 
-2. Branch Dev
-Objetivo
+## Regras da Main
 
-A branch dev é utilizada para integração do desenvolvimento da equipe.
+* nunca desenvolver diretamente na `main`;
+* nunca enviar funcionalidades incompletas;
+* realizar merge apenas de versões estáveis.
 
-Todas as funcionalidades passam primeiro pela dev.
+---
 
-Funções da Dev
-integrar funcionalidades;
-validar funcionamento geral;
-centralizar o desenvolvimento da equipe.
+# 2. Branch DEV
 
-3. Branches individuais
-Objetivo
+## Objetivo
 
-Cada membro da equipe terá a própria branch onde desenvolverá aquilo que está em sua responsabilidade. 
+A branch `DEV` é utilizada para integração do desenvolvimento da equipe.
 
-Isso permitirá:
-- desenvolvimento isolado;
-- organização;
-- redução de conflitos;
-- modularização do trabalho.
+Todas as funcionalidades passam primeiro pela `DEV` antes de chegar à `main`.
 
-Para maior oganização devem ser criadas com os seguintes títulos:
+## Funções da DEV
 
+* integrar funcionalidades;
+* validar funcionamento geral;
+* centralizar o desenvolvimento do projeto;
+* preparar versões para testes.
+
+---
+
+# 3. Branches Individuais
+
+## Objetivo
+
+Cada integrante possui uma branch própria para desenvolvimento das funcionalidades sob sua responsabilidade.
+
+Isso permite:
+
+* desenvolvimento isolado;
+* melhor organização;
+* redução de conflitos;
+* modularização do trabalho.
+
+## Padrão de Nome
+
+```plaintext
 branch-expedito
 branch-lucas
 branch-mario
 branch-raquel
+```
 
-## Criação das Branches individuais
+---
 
-Passo a Passo: As branches pessoais devem ser criadas sempre a partir da DEV.
+# Criação das Branches Individuais
 
-MPORTANTE
+As branches pessoais devem sempre ser criadas a partir da `DEV`.
 
-Antes de criar qualquer branch pessoal:
+## Atualizar DEV
+
+```bash
 git checkout DEV
 git pull origin DEV
+```
 
-1. Ir para DEV
+## Criar Branch Pessoal
 
-git checkout DEV
-
-2. Criar branch pessoal
-
-git checkout -b branch-"nome"
-
-exemplo: git checkout -b branch-raquel
-
-
-3. Enviar para o GitHub
-
-git push origin branch-"nome" 
-
-exemplo: git push origin branch-raquel
-
-## Fluxo correto de trabalho
-
-1. Atualizar DEV
-
-Antes de começar qualquer desenvolvimento:
-
-git checkout DEV
-git pull origin DEV
-
-2. Atualizar Branch Pessoal
+```bash
+git checkout -b branch-nome
+```
 
 Exemplo:
 
+```bash
+git checkout -b branch-raquel
+```
+
+## Enviar para o GitHub
+
+```bash
+git push origin branch-raquel
+```
+
+---
+
+# Fluxo Correto de Trabalho
+
+## 1. Atualizar DEV
+
+Antes de iniciar qualquer desenvolvimento:
+
+```bash
+git checkout DEV
+git pull origin DEV
+```
+
+---
+
+## 2. Atualizar Branch Pessoal
+
+Exemplo:
+
+```bash
 git checkout branch-raquel
 git merge DEV
+```
 
-Objetivo
+Objetivo:
+Trazer as atualizações mais recentes da equipe para a branch pessoal.
 
-Trazer todas as atualizações recentes da equipe para a branch pessoal.
+---
 
-3. Desenvolver Funcionalidade
+## 3. Desenvolver Funcionalidade
 
-Cada membro deve trabalhar principalmente nos módulos sob sua responsabilidade.
+Cada integrante desenvolve as funcionalidades sob sua responsabilidade.
 
-4. Adicionar Alterações
+---
 
+## 4. Adicionar Alterações
+
+```bash
 git add .
+```
 
-5. Criar Commit
+---
 
+## 5. Criar Commit
+
+```bash
 git commit -m "feat: create report service"
+```
 
-6. Enviar Alterações
+---
 
+## 6. Enviar Alterações
+
+```bash
 git push origin branch-raquel
+```
 
-7. Merge para DEV
+---
+
+## 7. Integrar na DEV
 
 Após testes e validações:
 
+```bash
 git checkout DEV
 git merge branch-raquel
+```
 
-8. Ao final quando tudo estiver pronto, testado e estável:
+---
 
-Merge Final para Main
+# Merge Final para Main
 
+Quando o sistema estiver:
+
+* estável;
+* validado;
+* testado;
+* pronto para entrega;
+
+deve ser realizado o merge final:
+
+```bash
 git checkout main
 git merge DEV
+```
 
-Resultado fina:
+Fluxo final:
 
+```plaintext
 DEV
 ↓
 main
+```
 
-## Regras importantes
+---
 
-- Nunca desenvolver diretamente na main;
-- Sempre atualizar a DEV antes de começar;
-- Sempre atualizar a branch pessoal antes de desenvolver;
-- Fazer commits pequenos e organizados;
-- Evitar alterar arquivos de responsabilidade de outros membros sem alinhamento;
-- Testar antes de realizar merge.
+# Regras Importantes
+
+* nunca desenvolver diretamente na `main`;
+* sempre atualizar a `DEV` antes de iniciar o desenvolvimento;
+* sempre atualizar a branch pessoal antes de programar;
+* realizar commits pequenos e organizados;
+* testar funcionalidades antes de realizar merge;
+* evitar alterar arquivos de responsabilidade de outros integrantes sem alinhamento prévio.
+
+---
+
+# Estratégia Utilizada
+
+O projeto EcoLar utiliza um fluxo simplificado baseado em GitHub Flow com integração centralizada na branch `DEV`.

@@ -134,6 +134,26 @@ def create_user_controller():
         "Usuário cadastrado com sucesso."
     )
 
+    while True:
+
+        option = input(
+            "\nDeseja cadastrar aparelhos agora? (S/N): "
+        ).upper()
+
+        if option == "S":
+
+            add_user_appliance_controller(user)
+
+            break
+
+        elif option == "N":
+
+            break
+
+        else:
+
+            show_error("Opção inválida.")
+
 def login_user_controller():
 
     show_title("Login")
