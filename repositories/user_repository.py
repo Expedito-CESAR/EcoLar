@@ -1,3 +1,5 @@
+# user_repository.py
+
 # from = usado para importar partes específicas de outro arquivo
 # import = traz funções/classes/módulos para este arquivo
 
@@ -146,7 +148,7 @@ def get_next_user_id():
     if not users:
         # Retorna primeiro ID do sistema
         return "001"
-    
+
     # max() = retorna maior valor encontrado
     # int() = converte ID texto para inteiro
     # for = percorre usuários
@@ -218,7 +220,7 @@ def save_all_users(users):
 # Função responsável por salvar usuário no TXT
 def create_user_repository(user):
 
- # Lista contendo campos obrigatórios
+    # Lista contendo campos obrigatórios
     required_keys = [
         # ID do usuário
         "id",
@@ -246,7 +248,7 @@ def create_user_repository(user):
 
             # return = encerra função
             return
-        
+
     # try = tenta executar bloco
     try:
 

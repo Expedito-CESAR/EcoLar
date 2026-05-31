@@ -19,3 +19,8 @@ def get_all_appliances_service():
 def get_user_appliances_by_user_service(user_id):
 
     return get_user_appliances_by_user_id(user_id)
+
+# Retorna aparelhos vinculados ao usuário
+def get_user_appliances_service(user_id):
+
+    return get_user_appliances_by_user_id(user_id)

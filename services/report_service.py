@@ -1,7 +1,5 @@
 # report_service.py
-# Service responsável pelos relatórios do sistema
 
-# Importa repositories
 from repositories.user_appliance_repository import (
     get_user_appliances_by_user_id
 )
@@ -14,27 +12,20 @@ from repositories.tip_repository import (
     get_all_tips
 )
 
-# Busca relatório de consumo do usuário
 def get_consumption_report_service(user_id):
 
-    # Busca aparelhos do usuário
     user_appliances = (
         get_user_appliances_by_user_id(user_id)
     )
 
-    # Busca aparelhos cadastrados
     appliances = get_all_appliances()
 
-    # Lista do relatório
     report = []
 
-    # Variável acumuladora
     total_consumption = 0
 
-    # Percorre vínculos
     for user_appliance in user_appliances:
 
-        # Procura aparelho correspondente
         for appliance in appliances:
 
             if (
@@ -43,44 +34,52 @@ def get_consumption_report_service(user_id):
                 user_appliance["appliance_id"]
             ):
 
-                # Soma consumo
-                total_consumption += (
-                    appliance["consumption"]
+                consumption = (
+                    (
+                        appliance["power"]
+                        *
+                        user_appliance["daily_usage"]
+                        *
+                        user_appliance["monthly_days"]
+                    )
+                    / 1000
+                    / 60
                 )
 
-                # Adiciona ao relatório
+                total_consumption += consumption
+
                 report.append({
                     "name": appliance["name"],
-                    "consumption": appliance["consumption"]
+                    "consumption": round(
+                        consumption,
+                        2
+                    )
                 })
 
-    # Retorna dados organizados
     return {
         "appliances": report,
-        "total_consumption": total_consumption
+        "total_consumption": round(
+            total_consumption,
+            2
+        )
     }
 
-# Busca recomendações energéticas
 def get_recommendations_service(user_id):
 
-    # Busca vínculos
     user_appliances = (
-        get_user_appliances_by_user_id(user_id)
+        get_user_appliances_by_user_id(
+            user_id
+        )
     )
 
-    # Busca aparelhos
     appliances = get_all_appliances()
 
-    # Busca dicas
     tips = get_all_tips()
 
-    # Lista de recomendações
     recommendations = []
 
-    # Percorre aparelhos do usuário
     for user_appliance in user_appliances:
 
-        # Procura aparelho correspondente
         for appliance in appliances:
 
             if (
@@ -89,10 +88,8 @@ def get_recommendations_service(user_id):
                 user_appliance["appliance_id"]
             ):
 
-                # Lista de dicas do aparelho
                 appliance_tips = []
 
-                # Busca dicas
                 for tip in tips:
 
                     if (
@@ -105,7 +102,6 @@ def get_recommendations_service(user_id):
                             tip["tip"]
                         )
 
-                # Adiciona recomendações
                 recommendations.append({
                     "name": appliance["name"],
                     "tips": appliance_tips
@@ -113,7 +109,6 @@ def get_recommendations_service(user_id):
 
     return recommendations
 
-# Simulação simples de economia
 def get_simulation_service():
 
     return {

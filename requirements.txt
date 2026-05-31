@@ -1,0 +1,9 @@
+# Projeto desenvolvido utilizando apenas bibliotecas padrão do Python
+
+# Não há dependências externas obrigatórias para execução do sistema.
+
+# Versão recomendada do Python:
+
+# Python 3.10+
+
+python>=3.10

@@ -1,47 +1,94 @@
 # EcoLar
 
-Sistema acadêmico desenvolvido em Python com foco no monitoramento e conscientização sobre consumo energético residencial.
+Sistema acadêmico desenvolvido em Python com foco no monitoramento, análise e conscientização sobre consumo energético residencial.
 
-## Equipe 4
+---
 
-- Expedito Ferraz Gominho Paes - Gestor do Projeto, Pesquisa e Documentação
+# Equipe 4
 
-- Lucas Veiga De Aquino Souza Leite - Desenvolvedor de software
+* Expedito Ferraz Gominho Paes — Gestão do Projeto, Arquitetura do Sistema, Integração e Documentação
 
-- Mario Sergio Fernandes Mendonça - Analista Técnico e Modelagem de Dados
+* Lucas Veiga de Aquino Souza Leite — Desenvolvimento de Software e Regras de Negócio
 
-- Raquel Moura Lins Acioli - Designer de Experiência (UX)
+* Mario Sergio Fernandes Mendonça — Apoio Técnico e Pesquisa
 
+* Raquel Moura Lins Acioli — Experiência do Usuário (UX), Interface Textual e Organização Visual
 
-## Objetivo do Projeto
+---
 
-O EcoLar tem como objetivo auxiliar usuários no acompanhamento do consumo energético de aparelhos elétricos, promovendo maior conscientização sobre hábitos de consumo e incentivando práticas mais sustentáveis através de cálculos de consumo, estimativas de custo e classificação energética.
+# Objetivo do Projeto
 
+O EcoLar tem como objetivo auxiliar usuários no acompanhamento do consumo energético de aparelhos elétricos residenciais, promovendo maior conscientização sobre hábitos de consumo e incentivando práticas mais sustentáveis através de cálculos energéticos, estimativas de custo, relatórios e simulações de economia.
 
-## Funcionalidades do Sistema
+O sistema foi desenvolvido como projeto acadêmico da disciplina de Projeto 1 da CESAR School, utilizando arquitetura modular baseada em camadas para separação de responsabilidades.
 
-- Cadastro de usuários
-- Cadastro de aparelhos elétricos
-- Leitura e manipulação de arquivos TXT
-- Atualização de dados
-- Remoção de registros
-- Cálculo de consumo energético (kWh)
-- Estimativa de custo mensal
-- Classificação energética (A+ até E)
-- Simulação simples de economia
-- Tratamento de erros e exceções
+---
 
+# Principais Funcionalidades
 
-## Tecnologias Utilizadas
+## Usuários
 
-- Python
-- Git
-- GitHub
-- Visual Studio Code
-- Arquivos TXT para persistência de dados
+* Cadastro de usuários
+* Login simplificado
+* Atualização de dados cadastrais
+* Exclusão de conta
 
+## Aparelhos
 
-## Estrutura do Projeto
+* Cadastro de aparelhos vinculados ao usuário
+* Atualização de tempo de uso
+* Remoção de aparelhos
+* Organização por categorias
+
+## Consumo Energético
+
+* Cálculo real de consumo energético (kWh)
+* Estimativa de custo mensal
+* Classificação energética
+* Comparação com média de consumo
+* Simulação de economia energética
+
+## Relatórios e Recomendações
+
+* Relatórios de consumo por aparelho
+* Recomendações de economia
+* Simulações de redução de consumo
+* Dicas de uso consciente de energia
+
+## Persistência e Robustez
+
+* Persistência em arquivos TXT
+* Tratamento de erros e inconsistências
+* Validação de entradas do usuário
+* Padronização estrutural dos dados
+
+---
+
+# Tecnologias Utilizadas
+
+* Python 3
+* Git
+* GitHub
+* Visual Studio Code
+* Arquivos TXT para persistência de dados
+
+---
+
+# Arquitetura do Projeto
+
+O sistema foi desenvolvido utilizando arquitetura modular em camadas:
+
+* **Views** → Interface textual e interação com o usuário
+* **Controllers** → Controle do fluxo do sistema
+* **Services** → Regras de negócio e cálculos
+* **Repositories** → Persistência e manipulação dos arquivos TXT
+* **Utils** → Funções auxiliares e validações
+
+Essa organização busca facilitar manutenção, reutilização de código e separação de responsabilidades.
+
+---
+
+# Estrutura do Projeto
 
 ```plaintext
 EcoLar/
@@ -75,7 +122,9 @@ EcoLar/
 │   ├── user_appliance_service.py
 │   ├── appliance_service.py
 │   ├── consumption_service.py
-│   ├── recommendation_service.py
+│   ├── energy_classification_service.py
+│   ├── report_service.py
+│   ├── simulation_service.py
 │
 ├── controllers/
 │   ├── __init__.py
@@ -83,6 +132,7 @@ EcoLar/
 │   ├── appliance_controller.py
 │   ├── report_controller.py
 │   ├── menu_controller.py
+│   ├── energy_controller.py
 │
 ├── utils/
 │   ├── __init__.py
@@ -96,10 +146,61 @@ EcoLar/
 │   ├── consumption_view.py
 │   ├── menu_view.py
 │   ├── user_view.py
-│   ├── report_view.py
 │
-├── docs
-|   ├── arquitetura.md
-|   ├── backlog.md
-|   ├── fluxo_git.md
-|   ├── regras_negocio.md
+├── docs/
+│   ├── guia_consumo_energia.md
+│   ├── fluxo_git.md
+```
+
+---
+
+# Como Executar o Projeto
+
+## 1. Clonar o repositório
+
+```bash
+git clone https://github.com/Expedito-CESAR/EcoLar.git
+```
+
+---
+
+## 2. Acessar a pasta do projeto
+
+```bash
+cd EcoLar
+```
+
+---
+
+## 3. Executar o sistema
+
+```bash
+python main.py
+```
+
+---
+
+# Características Técnicas do Sistema
+
+* Arquitetura modular em camadas
+* Separação de responsabilidades
+* Reutilização de funções
+* Persistência baseada em TXT
+* Tratamento de inconsistências estruturais
+* Navegação textual interativa
+* Validações centralizadas
+* Organização para futura expansão
+
+---
+
+# Status do Projeto
+
+Projeto em fase final de estabilização e testes integrados.
+
+---
+
+# Instituição
+
+CESAR School
+Graduação em Gestão da Tecnologia da Informação (GTI)
+Disciplina: Projeto 1
